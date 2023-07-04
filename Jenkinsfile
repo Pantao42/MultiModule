@@ -13,5 +13,17 @@ pipeline {
       }
     }
 
+    stage('Artefakte sichern') {
+      steps {
+        archiveArtifacts '**/*.jar'
+      }
+    }
+
+    stage('Aufräumen') {
+      steps {
+        cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
+      }
+    }
+
   }
 }
