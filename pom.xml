@@ -1,0 +1,150 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.soebes.maven.training.module</groupId>
+	<artifactId>parent</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0</version>
+	<name>ModuleTest :: Parent</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>release</id>
+			<name>Internal Releases</name>
+			<url>${release-distribution}/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot</id>
+			<name>Internal Snapshots</name>
+			<url>${snapshot-distribution}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<scm>
+		<connection>scm:svn:svn://synoserv.fritz.box/repo/tags/parent-1.0.0</connection>
+		<developerConnection>scm:svn:svn://synoserv.fritz.box/repo/tags/parent-1.0.0</developerConnection>
+	</scm>
+
+	<modules>
+		<module>m1</module>
+		<module>m2</module>
+		<module>m3</module>
+		<module>m4</module>
+		<module>m5</module>
+	</modules>
+	
+	<dependencies>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.2</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+	
+	<pluginManagement>
+      <plugins>
+        <!-- plugin>
+          <groupId>net.nicoulaj.maven.plugins</groupId>
+          <artifactId>checksum-maven-plugin</artifactId>
+          <version>1.10</version>
+        </plugin -->
+        <plugin>
+        	<groupId>org.codehaus.mojo</groupId>
+        	<artifactId>xml-maven-plugin</artifactId>
+        	<version>1.0.2</version>
+    	</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<configuration>
+					<tagBase>svn://synoserv.fritz.box/repo/tags</tagBase>
+				</configuration>
+			</plugin>
+			<!-- plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>setup-maven-plugin</artifactId> 
+				</plugin -->
+				<!-- plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>setup-maven-plugin</artifactId> 
+					<version>1.0.0-alpha-1-SNAPSHOT</version> </plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.4.1</version>
+					<configuration>
+						<tagBase>svn://synoserv.fritz.box/repo/tags</tagBase>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
+		<plugins>
+			<plugin>
+        		<groupId>org.codehaus.mojo</groupId>
+        		<artifactId>xml-maven-plugin</artifactId>
+        		<executions>
+          			<execution>
+            			<goals>
+              			<goal>validate</goal>
+        				</goals>
+          			</execution>
+        		</executions>
+        		<configuration>
+          			<validationSets>
+            			<validationSet>
+            			<dir>.</dir>
+            			<includes>
+              				<include>**/*.xml</include>
+        				</includes>
+            		</validationSet>
+          		</validationSets>
+        	</configuration>
+      	</plugin>
+				
+		<!-- plugin>
+        	<groupId>net.nicoulaj.maven.plugins</groupId>
+        	<artifactId>checksum-maven-plugin</artifactId>
+        	<executions>
+          		<execution>
+          		<phase>install</phase>
+          		  	<goals>
+              			<goal>files</goal>
+            		</goals>
+          		</execution>
+        	</executions>
+        	<configuration>
+        		<fileSets>
+        			<fileSet>
+        				<directory>.</directory>
+   					 	<includes>
+      						<include>**/*.jar</include>
+    					</includes>
+    					<excludes>
+      						<exclude></exclude>
+    					</excludes>
+        			</fileSet>
+        		</fileSets>
+          		<csvSummary>true</csvSummary>
+          		<csvSummaryFile>artifacts-checksums.csv</csvSummaryFile>
+          		<xmlSummary>false</xmlSummary>
+          		<xmlSummaryFile>artifacts-checksums.xml</xmlSummaryFile>
+          		<individualFilesOutputDirectory>checksums</individualFilesOutputDirectory>
+          		<algorithms>
+          			<algorithm>MD5</algorithm>
+          		</algorithms>
+        	</configuration>
+      	</plugin -->
+		
+	</plugins>
+
+</build>
+</project>
