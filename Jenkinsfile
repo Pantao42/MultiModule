@@ -15,11 +15,11 @@ pipeline {
 
     stage('Artefakte sichern') {
       steps {
-        archiveArtifacts '**/*.jar'
+        archiveArtifacts '*.jar'
       }
     }
 
-    stage('Aufr‰umen') {
+    stage('Aufr√§umen') {
       steps {
         cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenSuccess: true, cleanWhenUnstable: true, deleteDirs: true)
       }
